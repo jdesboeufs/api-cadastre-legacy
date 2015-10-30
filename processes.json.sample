@@ -1,0 +1,13 @@
+{
+    "apps": [
+        {
+            "name": "dgfip-cadastre",
+            "script": "server.js",
+            "instances": 1,
+            "exec_mode": "cluster",
+            "env": {
+                "PG_URI": "-- PostegreSQL Connection string --"
+            }
+        }
+    ]
+}

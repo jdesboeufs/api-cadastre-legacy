@@ -1,0 +1,41 @@
+{
+  "name": "dgfip-cadastre-api",
+  "version": "0.1.0",
+  "description": "REST API to access to French DGFiP cadastre (PCI) ",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint controllers/**/*.js *.js",
+    "start": "node server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/jdesboeufs/dgfip-cadastre-api.git"
+  },
+  "keywords": [
+    "cadastre",
+    "dgfip",
+    "pci",
+    "rest",
+    "geojson"
+  ],
+  "author": "Jérôme Desboeufs <jerome.desboeufs@gmail.com>",
+  "license": "AGPL-3.0",
+  "bugs": {
+    "url": "https://github.com/jdesboeufs/dgfip-cadastre-api/issues"
+  },
+  "homepage": "https://github.com/jdesboeufs/dgfip-cadastre-api#readme",
+  "dependencies": {
+    "compression": "^1.6.0",
+    "cors": "^2.7.1",
+    "express": "^4.13.3",
+    "lodash": "^3.10.1",
+    "morgan": "^1.6.1",
+    "pg": "^4.4.3",
+    "pg-format": "^1.0.1",
+    "pg-native": "^1.9.0"
+  },
+  "devDependencies": {
+    "eslint": "^1.7.3"
+  }
+}
