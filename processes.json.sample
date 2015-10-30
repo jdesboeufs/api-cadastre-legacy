@@ -6,7 +6,8 @@
             "instances": 1,
             "exec_mode": "cluster",
             "env": {
-                "PG_URI": "-- PostegreSQL Connection string --"
+                "PG_URI": "-- PostegreSQL Connection string --",
+                "ROOT_URL": "http://localhost:5000"
             }
         }
     ]

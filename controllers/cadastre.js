@@ -59,3 +59,7 @@ exports.commune = function(req, res, next) {
         });
     });
 };
+
+exports.preview = function (req, res) {
+    res.redirect('http://umap.fluv.io/fr/map/new/?dataUrl=' + encodeURIComponent(process.env.ROOT_URL + '/commune/' + req.params.communeInsee));
+};
