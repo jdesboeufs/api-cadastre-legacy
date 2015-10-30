@@ -29,6 +29,7 @@ function pgEnd(req, res, next) {
 
 /* Routes */
 app.get('/commune/:communeInsee', pgClient, cadastre.commune, pgEnd);
+app.get('/commune/:communeInsee/stream', pgClient, cadastre.communeStream, pgEnd);
 
 /* Ready! */
 app.listen(port, function () {
