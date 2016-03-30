@@ -42,7 +42,7 @@ function communeStream(req, res, next) {
 
 function commune(req, res, next) {
     req.pgClient.query(format(`
-            SELECT id_cadastre, numero, voie_cadastre, surface, ST_AsGeoJSON(geometrie, 7) AS geom
+            SELECT DISTINCT id_cadastre, surface, ST_AsGeoJSON(geometrie, 7) AS geom
             FROM parcelles
             WHERE insee_com = '%s';
         `, req.params.communeInsee), (err, result) => {
