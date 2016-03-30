@@ -4,6 +4,10 @@ const _ = require('lodash');
 const _s = require('underscore.string');
 
 
+function prepareProperties(row) {
+    return _.pick(row, 'id_cadastre', 'numero', 'voie_cadastre', 'surface');
+}
+
 // Alternative implementation for performance test purpose
 function communeStream(req, res, next) {
     const query = req.pgClient.query(format(`
@@ -29,7 +33,7 @@ function communeStream(req, res, next) {
         res.write(`${first ? '' : ','}{"type":"Feature","geometry":`);
         res.write(row.geom);
         res.write(',"properties":');
-        res.write(JSON.stringify(_.pick(row, 'id_cadastre', 'numero', 'voie_cadastre', 'surface')));
+        res.write(JSON.stringify(prepareProperties(row)));
         res.write('}');
         first = false;
     });
@@ -55,7 +59,7 @@ function commune(req, res, next) {
             features: result.rows.map(row => ({
                 type: 'Feature',
                 geometry: JSON.parse(row.geom),
-                properties: _.pick(row, 'id_cadastre', 'numero', 'voie_cadastre', 'surface'),
+                properties: prepareProperties(row),
             })),
         });
     });
@@ -84,7 +88,7 @@ function parcelles(req, res, next) {
             features: result.rows.map(row => ({
                 type: 'Feature',
                 geometry: JSON.parse(row.geom),
-                properties: _.pick(row, 'id_cadastre', 'numero', 'voie_cadastre', 'surface'),
+                properties: prepareProperties(row),
             })),
         });
     });
