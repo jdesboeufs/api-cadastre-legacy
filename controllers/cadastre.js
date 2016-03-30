@@ -2,6 +2,7 @@ var format = require('pg-format');
 var _ = require('lodash');
 
 
+// Alternative implementation for performance test purpose
 exports.communeStream = function(req, res, next) {
     var query = req.pgClient.query(format(`
         SELECT id_cadastre, numero, voie_cadastre, surface, ST_AsGeoJSON(geometrie, 7) AS geom
