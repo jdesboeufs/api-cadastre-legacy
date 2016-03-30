@@ -29,9 +29,10 @@ function pgEnd(req, res, next) {
 }
 
 /* Routes */
-app.get('/commune/:communeInsee', pgClient, cadastre.commune, pgEnd);
-app.get('/commune/:communeInsee/parcelles', pgClient, cadastre.parcelles);
-app.get('/commune/:communeInsee/stream', pgClient, cadastre.communeStream, pgEnd);
+app.get('/api/commune/:communeInsee', pgClient, cadastre.commune, pgEnd);
+app.get('/api/commune/:communeInsee/parcelles', pgClient, cadastre.parcelles);
+app.get('/api/commune/:communeInsee/stream', pgClient, cadastre.communeStream, pgEnd);
+
 app.get('/commune/:communeInsee/preview', cadastre.preview);
 
 /* Ready! */
