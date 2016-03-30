@@ -5,7 +5,12 @@ const _s = require('underscore.string');
 
 
 function prepareProperties(row) {
-    return _.pick(row, 'id_cadastre', 'numero', 'voie_cadastre', 'surface');
+    const properties = {};
+    properties.id = row.id_cadastre;
+    properties.section = row.id_cadastre.substr(8, 2);
+    properties.numero = row.id_cadastre.substr(10, 4);
+    properties.surface = row.surface;
+    return properties;
 }
 
 // Alternative implementation for performance test purpose
