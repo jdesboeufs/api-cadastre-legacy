@@ -1,6 +1,7 @@
 'use strict';
 const format = require('pg-format');
 const _ = require('lodash');
+const _s = require('underscore.string');
 
 
 // Alternative implementation for performance test purpose
@@ -65,8 +66,8 @@ function parcelles(req, res, next) {
 
     if (req.query.section || req.query.numero) {
         let pattern = '%';
-        pattern = req.query.section ? pattern + req.query.section : '__';
-        pattern = req.query.numero ? pattern + req.query.numero : '____';
+        pattern = req.query.section ? pattern + _s.lpad(req.query.section, 2, '0') : '__';
+        pattern = req.query.numero ? pattern + _s.lpad(req.query.numero, 4, '0') : '____';
         conditions.push(`id_cadastre LIKE '${pattern}'`);
     }
 
