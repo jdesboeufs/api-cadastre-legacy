@@ -60,8 +60,37 @@ function commune(req, res, next) {
     });
 }
 
+function parcelles(req, res, next) {
+    const conditions = [`insee_com = '${req.params.communeInsee}'`];
+
+    if (req.query.section || req.query.numero) {
+        let pattern = '%';
+        pattern = req.query.section ? pattern + req.query.section : '__';
+        pattern = req.query.numero ? pattern + req.query.numero : '____';
+        conditions.push(`id_cadastre LIKE '${pattern}'`);
+    }
+
+    req.pgClient.query(`
+        SELECT DISTINCT id_cadastre, surface, ST_AsGeoJSON(geometrie, 7) AS geom
+        FROM parcelles
+        WHERE ${conditions.join(' AND ')};
+    `, (err, result) => {
+        req.pgEnd();
+        if (err) return next(err);
+
+        return res.send({
+            type: 'FeatureCollection',
+            features: result.rows.map(row => ({
+                type: 'Feature',
+                geometry: JSON.parse(row.geom),
+                properties: _.pick(row, 'id_cadastre', 'numero', 'voie_cadastre', 'surface'),
+            })),
+        });
+    });
+}
+
 function preview(req, res) {
     res.redirect(`http://umap.fluv.io/fr/map/new/?dataUrl=${encodeURIComponent(`${process.env.ROOT_URL}/commune/${req.params.communeInsee}`)}`);
 }
 
-module.exports = { communeStream, commune, preview };
+module.exports = { communeStream, commune, preview, parcelles };
