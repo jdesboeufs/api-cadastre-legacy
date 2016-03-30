@@ -5,3 +5,5 @@ rules:
         - 4
     no-param-reassign:
         - 0
+    strict:
+        - 0

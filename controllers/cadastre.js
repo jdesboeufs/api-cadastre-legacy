@@ -1,3 +1,4 @@
+'use strict';
 const format = require('pg-format');
 const _ = require('lodash');
 
