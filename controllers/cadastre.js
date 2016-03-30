@@ -14,7 +14,7 @@ function prepareProperties(row) {
 }
 
 // Alternative implementation for performance test purpose
-function communeStream(req, res, next) {
+function parcellesStream(req, res, next) {
     const query = req.pgClient.query(format(`
         SELECT id_cadastre, numero, voie_cadastre, surface, ST_AsGeoJSON(geometrie, 7) AS geom
         FROM parcelles
@@ -47,26 +47,6 @@ function communeStream(req, res, next) {
         req.pgEnd();
         res.write(']}');
         res.end();
-    });
-}
-
-function commune(req, res, next) {
-    req.pgClient.query(format(`
-            SELECT DISTINCT id_cadastre, surface, ST_AsGeoJSON(geometrie, 7) AS geom
-            FROM parcelles
-            WHERE insee_com = '%s';
-        `, req.params.communeInsee), (err, result) => {
-        req.pgEnd();
-        if (err) return next(err);
-
-        return res.send({
-            type: 'FeatureCollection',
-            features: result.rows.map(row => ({
-                type: 'Feature',
-                geometry: JSON.parse(row.geom),
-                properties: prepareProperties(row),
-            })),
-        });
     });
 }
 
@@ -103,4 +83,4 @@ function preview(req, res) {
     res.redirect(`http://umap.fluv.io/fr/map/new/?dataUrl=${encodeURIComponent(`${process.env.ROOT_URL}/api/commune/${req.params.communeInsee}`)}`);
 }
 
-module.exports = { communeStream, commune, preview, parcelles };
+module.exports = { communeStream, preview, parcelles };
