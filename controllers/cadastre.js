@@ -80,7 +80,7 @@ function parcelles(req, res, next) {
 }
 
 function preview(req, res) {
-    res.redirect(`http://umap.fluv.io/fr/map/new/?dataUrl=${encodeURIComponent(`${process.env.ROOT_URL}/api/commune/${req.params.communeInsee}`)}`);
+    res.redirect(`http://umap.fluv.io/fr/map/new/?dataUrl=${encodeURIComponent(`${process.env.ROOT_URL}/commune/${req.params.communeInsee}`)}`);
 }
 
 module.exports = { parcellesStream, preview, parcelles };
