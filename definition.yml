@@ -1,0 +1,55 @@
+swagger: '2.0'
+info:
+  title: API Cadastre
+  description: |
+    Consulter les données du cadastre vectoriel à l'aide d'une API REST
+  version: 0.1.0
+host: cadastre.api.gouv.fr
+schemes:
+  - http
+produces:
+  - application/json
+paths:
+  /commune/{codeCommune}:
+    get:
+      summary: Récupérer les parcelles cadastrales d'une commune
+      description: |
+        Retourne du GeoJSON
+      parameters:
+        - name: codeCommune
+          in: path
+          description: Code INSEE de la commune
+          required: true
+          type: string
+        - name: section
+          in: query
+          description: Filtrer par section cadastrale
+          type: string
+        - name: numero
+          in: query
+          description: Filtrer par numéro de parcelle
+          type: string
+      responses:
+        200:
+          description: Liste de parcelles
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Parcelle'
+definitions:
+  Parcelle:
+    type: object
+    properties:
+      id:
+        type: string
+        description: Identifiant unique de la parcelle
+      section:
+        type: string
+        description: Code section de la parcelle
+      numero:
+        type: string
+        description: Numéro de la parcelle
+      surface:
+        type: number
+        format: float
+        description: Surface de la parcelle, en mètres-carrés
