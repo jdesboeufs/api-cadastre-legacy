@@ -1,30 +1,21 @@
 {
-  "name": "dgfip-cadastre-api",
+  "name": "api-cadastre",
   "version": "0.1.0",
-  "description": "REST API to access to French DGFiP cadastre (PCI) ",
-  "main": "index.js",
+  "description": "Consulter les données du cadastre vectoriel",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "eslint controllers/**/*.js *.js",
     "start": "node server"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+ssh://git@github.com/jdesboeufs/dgfip-cadastre-api.git"
-  },
   "keywords": [
-    "cadastre",
-    "dgfip",
-    "pci",
-    "rest",
-    "geojson"
+    "Cadastre",
+    "DGFiP",
+    "PCI Vecteur",
+    "REST",
+    "GeoJSON"
   ],
-  "author": "Jérôme Desboeufs <jerome.desboeufs@gmail.com>",
+  "author": "Jérôme Desboeufs <jerome.desboeufs@beta.gouv.fr>",
   "license": "AGPL-3.0",
-  "bugs": {
-    "url": "https://github.com/jdesboeufs/dgfip-cadastre-api/issues"
-  },
-  "homepage": "https://github.com/jdesboeufs/dgfip-cadastre-api#readme",
   "dependencies": {
     "compression": "^1.6.0",
     "cors": "^2.7.1",
@@ -37,7 +28,6 @@
     "underscore.string": "^3.3.4"
   },
   "devDependencies": {
-    "eslint": "^2.5.3",
-    "eslint-config-airbnb": "^6.2.0"
+    "eslint": "^2.8.0"
   }
 }
