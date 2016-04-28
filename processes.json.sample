@@ -1,7 +1,7 @@
 {
     "apps": [
         {
-            "name": "dgfip-cadastre",
+            "name": "api-cadastre",
             "script": "server.js",
             "instances": 1,
             "exec_mode": "cluster",
