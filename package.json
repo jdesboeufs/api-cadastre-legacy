@@ -2,11 +2,6 @@
   "name": "api-cadastre",
   "version": "0.1.0",
   "description": "Consulter les données du cadastre vectoriel",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "lint": "eslint controllers/**/*.js *.js",
-    "start": "node server"
-  },
   "keywords": [
     "Cadastre",
     "DGFiP",
@@ -16,6 +11,14 @@
   ],
   "author": "Jérôme Desboeufs <jerome.desboeufs@beta.gouv.fr>",
   "license": "AGPL-3.0",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint controllers/**/*.js *.js",
+    "start": "node server"
+  },
+  "engines": {
+    "node": ">= 6.0.0"
+  },
   "dependencies": {
     "compression": "^1.6.0",
     "cors": "^2.7.1",
