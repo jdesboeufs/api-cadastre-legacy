@@ -35,7 +35,10 @@ app.get('/commune/:communeInsee', pgClient, cadastre.parcelles, pgEnd);
 
 app.get('/commune/:communeInsee/preview', cadastre.preview);
 
-/* Ready! */
-app.listen(port, () => {
-    console.log('Start listening on port %d', port);
+/* OpenAPI definition */
+app.get('/definition.yml', function (req, res) {
+    res.sendFile(__dirname + '/definition.yml');
 });
+
+/* Ready! */
+app.listen(port);
