@@ -20,7 +20,6 @@
     "node": ">= 6.0.0"
   },
   "dependencies": {
-    "compression": "^1.6.0",
     "cors": "^2.7.1",
     "express": "^4.13.3",
     "lodash": "^4.6.1",

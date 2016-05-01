@@ -1,17 +1,16 @@
 'use strict';
 const express = require('express');
 const cors = require('cors');
-const compression = require('compression');
 const pg = require('pg');
 const morgan = require('morgan');
 const cadastre = require('./controllers/cadastre');
 
 const app = express();
 const port = process.env.PORT || 5000;
+const production = process.env.NODE_ENV === 'production';
 
-app.use(compression());
 app.use(cors());
-app.use(morgan(process.env.NODE_ENV === 'production' ? 'short' : 'dev'));
+app.use(morgan(production ? 'short' : 'dev'));
 
 /* Middlewares */
 function pgClient(req, res, next) {
