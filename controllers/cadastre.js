@@ -19,7 +19,7 @@ function parcellesStream(req, res, next) {
         SELECT id_cadastre, numero, voie_cadastre, surface, ST_AsGeoJSON(geometrie, 7) AS geom
         FROM parcelles
         WHERE insee_com = '%s';`
-    , req.params.communeInsee));
+    , req.codeInsee));
 
     query.on('error', err => {
         req.pgEnd();
@@ -51,7 +51,7 @@ function parcellesStream(req, res, next) {
 }
 
 function parcelles(req, res, next) {
-    const conditions = [`insee_com = '${req.params.communeInsee}'`];
+    const conditions = [`insee_com = '${req.codeInsee}'`];
 
     if (req.query.section || req.query.numero) {
         let pattern = '%';
