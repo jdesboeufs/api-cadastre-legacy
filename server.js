@@ -29,11 +29,10 @@ function pgEnd(req, res, next) {
 }
 
 /* Routes */
-app.get('/commune/:communeInsee', pgClient, cadastre.parcelles, pgEnd);
-// app.get('/commune/:communeInsee/parcelles', pgClient, cadastre.parcelles);
-// app.get('/commune/:communeInsee/stream', pgClient, cadastre.parcellesStream, pgEnd);
+app.param('codeCommune', require('./lib/codeCommune').paramExtractor);
 
-app.get('/commune/:communeInsee/preview', cadastre.preview);
+app.get('/commune/:codeCommune', pgClient, cadastre.parcelles, pgEnd);
+app.get('/commune/:codeCommune/preview', cadastre.preview);
 
 /* OpenAPI definition */
 app.get('/definition.yml', function (req, res) {

@@ -38,6 +38,18 @@ paths:
             type: array
             items:
               $ref: '#/definitions/Parcelle'
+        400:
+          description: Erreur. Requête mal formée
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+                description: Code HTTP de l'erreur
+              message:
+                type: string
+                description: Explication
+
 definitions:
   Parcelle:
     type: object
