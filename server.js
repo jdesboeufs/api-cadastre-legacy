@@ -2,7 +2,7 @@
 const express = require('express');
 const cors = require('cors');
 const compression = require('compression');
-const pg = require('pg').native;
+const pg = require('pg');
 const morgan = require('morgan');
 const cadastre = require('./controllers/cadastre');
 
