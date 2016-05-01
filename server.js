@@ -9,6 +9,10 @@ const app = express();
 const port = process.env.PORT || 5000;
 const production = process.env.NODE_ENV === 'production';
 
+if (production) {
+    app.set('trust proxy', true);
+}
+
 app.use(cors());
 app.use(morgan(production ? 'short' : 'dev'));
 
